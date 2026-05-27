@@ -6,7 +6,8 @@
 
 	<!-- 성적 전체 조회 -->
 	<select id="getAllScores" resultType="java.util.HashMap">
-		SELECT s.name, sc.ko, sc.en, sc.ma, sc.avg, sc.grade
+		SELECT s.name, sc.score_id, sc.ko, sc.en, sc.ma, sc.avg, sc.grade,
+		RANK() OVER (ORDER BY sc.avg DESC) AS rank
 		FROM scores sc
 		JOIN students s ON sc.std_no = s.std_no
 	</select>
@@ -24,9 +25,11 @@
 
 	<!-- 본인 성적 조회 -->
 	<select id="getMyScore" resultType="java.util.HashMap">
-		SELECT sc.ko, sc.en, sc.ma, sc.avg, sc.grade,
+		SELECT sc.ko, sc.en, sc.ma,
+		sc.avg, sc.grade,
 		RANK() OVER (ORDER BY sc.avg DESC) AS rank
-		FROM scores sc
+		FROM scores
+		sc
 		WHERE sc.std_no = #{std_no}
 	</select>
 

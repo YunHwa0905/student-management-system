@@ -153,8 +153,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             background: #f0f2f5;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
         }
 
         .login-card {
@@ -193,7 +198,8 @@
             text-align: center;
         }
 
-        .hidden { display: none; }
+        #admin-section { display: none; }
+        #student-section { display: none; }
     </style>
 </head>
 <body>
@@ -210,7 +216,7 @@
 </div>
 
 <!-- 메인 페이지 -->
-<div id="main-page" class="hidden">
+<div id="main-page">
 
     <header>
         <span>📊 학생 성적 관리 시스템</span>
@@ -223,9 +229,8 @@
     <div class="container">
 
         <!-- 관리자 전용 -->
-        <div id="admin-section" class="hidden">
+        <div id="admin-section">
 
-            <!-- 학생 등록 -->
             <div class="card">
                 <h2>학생 등록</h2>
                 <div class="form-row">
@@ -237,7 +242,6 @@
                 <div class="msg" id="s-msg"></div>
             </div>
 
-            <!-- 학생 목록 -->
             <div class="card" style="margin-top: 30px;">
                 <h2>학생 목록</h2>
                 <table>
@@ -253,7 +257,6 @@
                 </table>
             </div>
 
-            <!-- 성적 등록 -->
             <div class="card" style="margin-top: 30px;">
                 <h2>성적 등록</h2>
                 <div class="form-row">
@@ -266,13 +269,12 @@
                 <div class="msg" id="sc-msg"></div>
             </div>
 
-            <!-- 전체 성적 목록 -->
             <div class="card" style="margin-top: 30px;">
                 <h2>전체 성적 목록</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>순위</th>
+                            <th>석차</th>
                             <th>이름</th>
                             <th>국어</th>
                             <th>영어</th>
@@ -289,13 +291,13 @@
         </div>
 
         <!-- 학생 전용 -->
-        <div id="student-section" class="hidden">
+        <div id="student-section">
             <div class="card">
                 <h2>내 성적 조회</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>순위</th>
+                            <th>석차</th>
                             <th>국어</th>
                             <th>영어</th>
                             <th>수학</th>
@@ -343,26 +345,24 @@
     // 로그아웃
     function logout() {
         currentUser = null;
-        document.getElementById('login-page').classList.remove('hidden');
-        document.getElementById('main-page').classList.add('hidden');
-        document.getElementById('admin-section').classList.add('hidden');
-        document.getElementById('student-section').classList.add('hidden');
+        document.getElementById('login-page').style.display = 'flex';
+        document.getElementById('admin-section').style.display = 'none';
+        document.getElementById('student-section').style.display = 'none';
         document.getElementById('login-id').value = '';
         document.getElementById('login-pw').value = '';
     }
 
     // 로그인 후 메인 화면 전환
     function showMain() {
-        document.getElementById('login-page').classList.add('hidden');
-        document.getElementById('main-page').classList.remove('hidden');
+        document.getElementById('login-page').style.display = 'none';
         document.getElementById('header-name').textContent = `${currentUser.name}님`;
 
         if (currentUser.role === 'ADMIN') {
-            document.getElementById('admin-section').classList.remove('hidden');
+            document.getElementById('admin-section').style.display = 'block';
             getStudents();
             getScores();
         } else {
-            document.getElementById('student-section').classList.remove('hidden');
+            document.getElementById('student-section').style.display = 'block';
             getMyScore();
         }
     }
@@ -503,11 +503,6 @@
                 </tr>`;
         });
     }
-
-    // 엔터키 로그인
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Enter') login();
-    });
 </script>
 
 </body>
