@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="score">
+
+    <!-- 성적 전체 조회 -->
+    <select id="getAllScores" resultType="java.util.HashMap">
+        SELECT s.name, sc.ko, sc.en, sc.ma, sc.avg, sc.grade
+        FROM scores sc
+        JOIN students s ON sc.std_no = s.std_no
+    </select>
+
+    <!-- 성적 등록 -->
+    <insert id="insertScore">
+        INSERT INTO scores (std_no, ko, en, ma, avg, grade)
+        VALUES (#{std_no}, #{ko}, #{en}, #{ma}, #{avg}, #{grade})
+    </insert>
+
+    <!-- 성적 삭제 -->
+    <delete id="deleteScore">
+        DELETE FROM scores WHERE score_id = #{score_id}
+    </delete>
+
+</mapper>
