@@ -1,8 +1,5 @@
-# nginx 베이스 이미지
 FROM nginx:alpine
-
-# HTML/JS 파일 복사
-COPY . /usr/share/nginx/html
-
-# 80 포트 오픈
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY index.html /usr/share/nginx/html
 EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
