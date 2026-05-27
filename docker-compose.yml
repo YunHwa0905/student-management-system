@@ -1,5 +1,4 @@
 services:
-
   # PostgreSQL DB 컨테이너
   db:
     image: postgres:15
@@ -9,19 +8,19 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin1234
     volumes:
-      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql  # 초기화 SQL
-      - db-data:/var/lib/postgresql/data                      # 데이터 영속화
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
   # Spring Legacy 백엔드 컨테이너
   backend:
-    build: ./backend_logib
+    build: ./backend_logic
     container_name: score-backend
     ports:
       - "8080:8080"
     depends_on:
-      - db  # db 먼저 실행 후 백엔드 실행
+      - db
     environment:
       DB_URL: jdbc:postgresql://db:5432/scoredb
       DB_USER: admin
@@ -37,4 +36,4 @@ services:
       - backend
 
 volumes:
-  db-data:  # 볼륨 마운트로 데이터 영속화
+  db-data:
