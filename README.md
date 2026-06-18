@@ -6,6 +6,16 @@
 
 ## 🛠️ 기술 스택
 
+![Java](https://img.shields.io/badge/Java_11-007396?style=flat-square&logo=openjdk&logoColor=white)
+![Spring MVC](https://img.shields.io/badge/Spring_MVC_5.3.6-6DB33F?style=flat-square&logo=spring&logoColor=white)
+![MyBatis](https://img.shields.io/badge/MyBatis-000000?style=flat-square&logo=mybatis&logoColor=white)
+![Tomcat](https://img.shields.io/badge/Tomcat_9-F8DC75?style=flat-square&logo=apachetomcat&logoColor=black)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL_15-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-C71A36?style=flat-square&logo=apachemaven&logoColor=white)
+
 | 구분 | 기술 |
 |------|------|
 | Frontend | HTML / JavaScript (SPA) |
